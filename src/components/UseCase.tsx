@@ -1,0 +1,1 @@
+export const UseCase = () => <span className="font-bold italic">UseCase</span>
