@@ -8,3 +8,5 @@
 - npx shadcn-ui@latest add button
 
 - npm install lucide-react
+
+- npm install framer-motion
