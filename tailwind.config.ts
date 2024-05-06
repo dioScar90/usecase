@@ -67,9 +67,9 @@ const config = {
             opacity: "1"
           }
         },
-        marquee: {
-          '100%': {
-            transform: 'translateY(-50)',
+        "marquee": {
+          "100%": {
+            transform: "translateY(-50%)",
           }
         }
       },

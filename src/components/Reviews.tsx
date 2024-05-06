@@ -108,7 +108,7 @@ const Review = ({ imgSrc, className, ...props }: ReviewProps) => {
         'animate-fade-in rounded-[2.25rem] bg-white p-6 opacity-0 shadow-xl shadow-slate-900/5',
         className
       )}
-      style={{ animationDelay } as CSSProperties}
+      style={{ animationDelay }}
       {...props}
     >
       <Phone imgSrc={imgSrc} />
