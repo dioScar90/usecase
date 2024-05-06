@@ -20,3 +20,6 @@
 - npm install uploadthing @uploadthing/react
 
 - npm install zod
+
+- npm install prisma @prisma/client
+    - npx prisma init

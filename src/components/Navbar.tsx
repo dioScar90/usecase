@@ -26,12 +26,14 @@ export const Navbar = async () => {
                 })}>
                   Sign out
                 </Link>
-                {isAdmin ? <Link href="/api/auth/logout" className={buttonVariants({
-                  size: 'sm',
-                  variant: 'ghost',
-                })}>
-                  Dashboard ✨
-                </Link> : null}
+                {isAdmin && (
+                  <Link href="/api/auth/logout" className={buttonVariants({
+                    size: 'sm',
+                    variant: 'ghost',
+                  })}>
+                    Dashboard ✨
+                  </Link>
+                )}
                 <Link href="/configure/upload" className={buttonVariants({
                   size: 'sm',
                   className: 'hidden sm:flex items-center gap-1',

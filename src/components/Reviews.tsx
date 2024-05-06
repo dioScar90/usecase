@@ -15,31 +15,15 @@ const PHONES = [
   '/testimonials/6.jpg',
 ]
 
-// function splitArray<T>(arr: Array<T>, numParts: number) {
-//   return arr.reduce((acc: Array<Array<T>>, curr: T, i) => {
-//     const index = i % numParts
-
-//     acc[index] ??= []
-//     acc[index].push(curr)
-
-//     return acc
-//   }, [])
-// }
-
-function splitArray<T>(arr: Array<T>, numParts: number) {
-  const result: Array<Array<T>> = []
-
-  for (let i = 0; i < arr.length; i++) {
+const splitArray = <T,>(arr: Array<T>, numParts: number) => {
+  return arr.reduce((acc: Array<Array<T>>, curr: T, i) => {
     const index = i % numParts
 
-    if (!result[index]) {
-      result[index] = []
-    }
+    acc[index] ??= []
+    acc[index].push(curr)
 
-    result[index].push(arr[i])
-  }
-
-  return result
+    return acc
+  }, [])
 }
 
 const ReviewColumn = ({
@@ -129,7 +113,7 @@ const ReviewGrid = () => {
       ref={containerRef}
       className="relative -mx-4 mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-3"
     >
-      {isInView ? (
+      {isInView && (
         <>
           <ReviewColumn
             reviews={[...column1, ...column3.flat(), ...column2]}
@@ -155,7 +139,7 @@ const ReviewGrid = () => {
             msPerPixel={10}
           />
         </>
-      ) : null}
+      )}
 
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-slate-100" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-100" />
