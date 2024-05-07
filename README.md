@@ -23,3 +23,6 @@
 
 - npm install prisma @prisma/client
     - npx prisma init
+    - npx prisma db push
+
+- npm install sharp@0.32.6
