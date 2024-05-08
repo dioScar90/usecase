@@ -12,8 +12,10 @@ import { COLORS, FINISHES, MATERIALS, MODELS } from '@/validators/option-validat
 import { Label } from '@/components/ui/label';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Check, ChevronsUpDown } from 'lucide-react';
-import { ucfirst } from '@/app/utils/format/ucfirst';
+import { ArrowRight, Check, ChevronsUpDown } from 'lucide-react';
+import { ucfirst } from '@/utils/format/ucfirst';
+import { formatCurrency } from '@/utils/format/formatCurrency';
+import { BASE_PRICE } from '@/config/products';
 
 interface DesignConfiguratorProps {
   configId: string
@@ -190,10 +192,10 @@ const DesignConfigurator = ({
                       {ucfirst(name)}
                     </Label>
                     <div className="mt-3 space-y-4">
-                      {selectableOptions.map((op) => {
+                      {selectableOptions.map((op) => (
                         <RadioGroup.Option
                           key={op.value}
-                          value={option}
+                          value={op}
                           className={({ active, checked }) => cn(
                               'relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between',
                               {
@@ -207,21 +209,30 @@ const DesignConfigurator = ({
                                 className="font-medium text-gray-900"
                                 as="span"
                               >
-                                {option.label}
+                                {op.label}
                               </RadioGroup.Label>
 
-                              {option.description ? (
+                              {op.description ? (
                                 <RadioGroup.Description
                                   as="span"
                                   className="text-gray-500"
                                 >
-                                  <span className="block sm:inline">{option.description}</span>
+                                  <span className="block sm:inline">{op.description}</span>
                                 </RadioGroup.Description>
-                              ) : ()}
+                              ) : null}
                             </span>
                           </span>
+
+                          <RadioGroup.Description
+                            as="span"
+                            className="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
+                          >
+                            <span className="font-medium text-gray-900">
+                              {formatCurrency(op.price / 100)}
+                            </span>
+                          </RadioGroup.Description>
                         </RadioGroup.Option>
-                      })}
+                      ))}
                     </div>
                   </RadioGroup>
                 ))}
@@ -229,6 +240,23 @@ const DesignConfigurator = ({
             </div>
           </div>
         </ScrollArea>
+
+        <div className="w-full px-8 h-16 bg-white">
+          <div className="h-px w-full bg-zinc-200" />
+          <div className="size-full flex justify-end items-center">
+            <div className="w-full flex gap-6 items-center">
+              <p className="font-medium whitespace-nowrap">
+                {formatCurrency((BASE_PRICE + options.finish.price + options.material.price) / 100)}
+              </p>
+              <Button size="sm" className="w-full">
+                Continue
+                <ArrowRight
+                  className="size-4 ml-1.5 inline"
+                />
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
