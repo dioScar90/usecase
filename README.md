@@ -9,6 +9,9 @@
 - npx shadcn-ui@latest add progress
 - npx shadcn-ui@latest add toast
 - npx shadcn-ui@latest add aspect-ratio
+- npx shadcn-ui@latest add scroll-area
+- npx shadcn-ui@latest add label
+- npx shadcn-ui@latest add dropdown-menu
 
 - npm install lucide-react
 
@@ -26,3 +29,7 @@
     - npx prisma studio
 
 - npm install sharp@0.32.6
+
+- npm install react-rnd
+
+- npm install @headlessui/react
