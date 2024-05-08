@@ -8,11 +8,12 @@ import NextImage from 'next/image'
 import { Rnd } from 'react-rnd'
 import { RadioGroup } from '@headlessui/react'
 import { useState } from 'react';
-import { COLORS, MODELS } from '@/validators/option-validator';
+import { COLORS, FINISHES, MATERIALS, MODELS } from '@/validators/option-validator';
 import { Label } from '@/components/ui/label';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Check, ChevronsUpDown } from 'lucide-react';
+import { ucfirst } from '@/app/utils/format/ucfirst';
 
 interface DesignConfiguratorProps {
   configId: string
@@ -28,9 +29,13 @@ const DesignConfigurator = ({
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number]
     model: (typeof MODELS.options)[number]
+    material: (typeof MATERIALS.options)[number]
+    finish: (typeof FINISHES.options)[number]
   }>({
     color: COLORS[0],
     model: MODELS.options[0],
+    material: MATERIALS.options[0],
+    finish: FINISHES.options[0],
   })
 
   return (
@@ -174,6 +179,52 @@ const DesignConfigurator = ({
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
+
+                {[MATERIALS, FINISHES].map(({ name, options: selectableOptions }) => (
+                  <RadioGroup
+                    key={name}
+                    value={options[name]}
+                    onChange={(val) => setOptions((prev) => ({ ...prev, [name]: val }))}
+                  >
+                    <Label>
+                      {ucfirst(name)}
+                    </Label>
+                    <div className="mt-3 space-y-4">
+                      {selectableOptions.map((op) => {
+                        <RadioGroup.Option
+                          key={op.value}
+                          value={option}
+                          className={({ active, checked }) => cn(
+                              'relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between',
+                              {
+                                'border-primary': active || checked,
+                              }
+                          )}
+                        >
+                          <span className="flex items-center">
+                            <span className="flex flex-col text-sm">
+                              <RadioGroup.Label
+                                className="font-medium text-gray-900"
+                                as="span"
+                              >
+                                {option.label}
+                              </RadioGroup.Label>
+
+                              {option.description ? (
+                                <RadioGroup.Description
+                                  as="span"
+                                  className="text-gray-500"
+                                >
+                                  <span className="block sm:inline">{option.description}</span>
+                                </RadioGroup.Description>
+                              ) : ()}
+                            </span>
+                          </span>
+                        </RadioGroup.Option>
+                      })}
+                    </div>
+                  </RadioGroup>
+                ))}
               </div>
             </div>
           </div>
