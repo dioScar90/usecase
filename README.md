@@ -33,3 +33,5 @@
 - npm install react-rnd
 
 - npm install @headlessui/react
+
+- npm install @tanstack/react-query
