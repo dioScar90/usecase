@@ -1,4 +1,4 @@
-const getDateTypeValue = (value) => {
+const getDateTypeValue = (value: Date | string) => {
   if (value instanceof Date) {
     return value
   }
@@ -15,12 +15,12 @@ const getDateTypeValue = (value) => {
   return new Date(dateStr)
 }
 
-const sanitizeOptions = (options) => {
+const sanitizeOptions = (options: { [key: string]: any }) => {
   const validAttributes = [
     'year', 'month', 'day', 'hour', 'minute', 'second', 'hour12', 'timeZone', 'timeZoneName', 'weekday', 'dateStyle', 'timeStyle'
   ]
 
-  const sanitized = {}
+  const sanitized: { [key: string]: any } = {}
   
   for (const key in options) {
     if (!validAttributes.includes(key)) {
@@ -33,7 +33,7 @@ const sanitizeOptions = (options) => {
   return sanitized
 }
 
-export const formatDate = (value, options = {}) => {
+export const formatDate = (value: Date | string, options = {}) => {
   const date = getDateTypeValue(value)
 
   if (!date) {

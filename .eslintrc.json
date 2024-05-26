@@ -3,5 +3,8 @@
   "rules": {
     // Other rules
     "@next/next/no-img-element": "off"
+  },
+  "compilerOptions": {
+    "target": "es6"
   }
 }

@@ -1,7 +1,7 @@
 import { isOnlyZeros } from '../is/onlyZeros'
 
-function getOnlyNumbers(str, maxLength) {
-  return String(str)
+function getOnlyNumbers(str: string, maxLength: number) {
+  return str
     .replace(/\D/g, '')
     .replace(/^0+/g, '')
     .padStart(maxLength, '0')
@@ -9,7 +9,7 @@ function getOnlyNumbers(str, maxLength) {
 }
 
 // 123.456.789-09
-function cpf(value) {
+function cpf(value: string) {
   const numbers = getOnlyNumbers(value, 11)
 
   if (isOnlyZeros(numbers)) {
@@ -20,7 +20,7 @@ function cpf(value) {
 }
 
 // 12.345.678/0001-09
-function cnpj(value) {
+function cnpj(value: string) {
   const numbers = getOnlyNumbers(value, 14)
 
   if (isOnlyZeros(numbers)) {
@@ -31,7 +31,7 @@ function cnpj(value) {
 }
 
 // 123.45678.90-9
-function pis(value) {
+function pis(value: string) {
   const numbers = getOnlyNumbers(value, 11)
 
   if (isOnlyZeros(numbers)) {
@@ -42,7 +42,7 @@ function pis(value) {
 }
 
 // 19100-000
-function cep(value) {
+function cep(value: string) {
   const numbers = getOnlyNumbers(value, 11)
 
   if (isOnlyZeros(numbers)) {
@@ -53,18 +53,20 @@ function cep(value) {
 }
 
 // (18) 91234-5678
-function phone(value) {
-  return String(value)
+function phone(value: string) {
+  return value
   .replace(/\D/g, '')
   .replace(/(\d{2})(\d)/, '($1) $2')
   .replace(/(\d{5}|\d{4})(\d{4})/, '$1-$2')
   .replace(/(-\d{4})(\d+?)/, '$1')
 }
 
-function format(type, value) {
-  if (!value || (typeof value !== 'string' && typeof value !== 'number')) {
+function format(type: string, value?: string | number) {
+  if (!value) {
     return ''
   }
+
+  value = String(value)
   
   switch (type) {
     case 'PHONE':
@@ -82,8 +84,8 @@ function format(type, value) {
   }
 }
 
-export const formatCpf       = (value) => format('PHONE', value)
-export const formatCnpj      = (value) => format('CPF', value)
-export const formatPis       = (value) => format('CNPJ', value)
-export const formatCellPhone = (value) => format('PIS', value)
-export const formatCep       = (value) => format('CEP', value)
+export const formatCpf       = (value?: string | number) => format('PHONE', value)
+export const formatCnpj      = (value?: string | number) => format('CPF', value)
+export const formatPis       = (value?: string | number) => format('CNPJ', value)
+export const formatCellPhone = (value?: string | number) => format('PIS', value)
+export const formatCep       = (value?: string | number) => format('CEP', value)
