@@ -37,3 +37,5 @@
 - npm install @tanstack/react-query
 
 - npm install react-dom-confetti
+
+- npm install stripe
