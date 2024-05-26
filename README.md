@@ -35,3 +35,5 @@
 - npm install @headlessui/react
 
 - npm install @tanstack/react-query
+
+- npm install react-dom-confetti
