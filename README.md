@@ -12,6 +12,7 @@
 - npx shadcn-ui@latest add scroll-area
 - npx shadcn-ui@latest add label
 - npx shadcn-ui@latest add dropdown-menu
+- npx shadcn-ui@latest add dialog
 
 - npm install lucide-react
 
