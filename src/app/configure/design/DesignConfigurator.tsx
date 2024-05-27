@@ -13,7 +13,6 @@ import { Label } from '@/components/ui/label';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Check, ChevronsUpDown } from 'lucide-react';
-import { ucfirst } from '@/utils/format/ucfirst';
 import { formatCurrency } from '@/utils/format/formatCurrency';
 import { BASE_PRICE } from '@/config/products';
 import { useUploadThing } from '@/lib/uploadthing';
@@ -312,7 +311,7 @@ const DesignConfigurator = ({
                     onChange={(val) => setOptions((prev) => ({ ...prev, [name]: val }))}
                   >
                     <Label>
-                      {ucfirst(name)}
+                      {name[0].toUpperCase() + name.slice(1).toLowerCase()}
                     </Label>
                     <div className="mt-3 space-y-4">
                       {selectableOptions.map((op) => (
