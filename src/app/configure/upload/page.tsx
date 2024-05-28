@@ -19,7 +19,7 @@ const Page = () => {
     onClientUploadComplete: ([data]) => {
       const configId = data.serverData.configId
       startTransition(() => {
-        router.push(`/configre/design?id=${configId}`)
+        router.push(`/configure/design?id=${configId}`)
       })
     },
     onUploadProgress(p) {
