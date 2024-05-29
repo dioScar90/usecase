@@ -1,11 +1,10 @@
 'use server'
 
-import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products"
 import { db } from "@/db"
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
-import { calculateTotalPrice } from "./helperFn"
-import { Order } from "@prisma/client"
 import { stripe } from "@/lib/stripe"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import { Order } from "@prisma/client"
+import { calculateTotalPrice } from "./helperFn"
 
 export const createCheckoutSession = async ({ configId }: { configId: string }) => {
   const configuration = await db.configuration.findUnique({
