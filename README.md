@@ -42,3 +42,7 @@
 - npm install react-dom-confetti
 
 - npm install stripe
+
+- npm install @react-email/components
+
+- npm install resend
