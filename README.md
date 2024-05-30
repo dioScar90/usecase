@@ -13,6 +13,8 @@
 - npx shadcn-ui@latest add label
 - npx shadcn-ui@latest add dropdown-menu
 - npx shadcn-ui@latest add dialog
+- npx shadcn-ui@latest add card
+- npx shadcn-ui@latest add table
 
 - npm install lucide-react
 
