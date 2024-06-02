@@ -1,23 +1,23 @@
 'use client'
 
+import LoginModal from '@/components/LoginModal'
 import { Phone } from '@/components/Phone'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 import { BASE_PRICE, PRODUCT_PRICES } from '@/config/products'
 import { cn } from '@/lib/utils'
 import { formatCurrency } from '@/utils/format/formatCurrency'
+import { setStorage } from '@/utils/storage/setStorage'
 import { COLORS, MODELS } from '@/validators/option-validator'
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 import { Configuration } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
 import { ArrowRight, Check } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Confetti from 'react-dom-confetti'
-import { calculateTotalPrice } from './helperFn'
 import { createCheckoutSession } from './actions'
-import { useRouter } from 'next/navigation'
-import { useToast } from '@/components/ui/use-toast'
-import { setStorage } from '@/utils/storage/setStorage'
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
-import LoginModal from '@/components/LoginModal'
+import { calculateTotalPrice } from './helperFn'
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const router = useRouter()
@@ -86,15 +86,15 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
         setIsOpen={setIsLoginModalOpen}
       />
 
-      <div className="mt-20 grid grid-cols-1 text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
-        <div className="sm:col-span-4 md:col-span-3 md:row-span-2 md:row-end-2">
+      <div className="mt-20 flex flex-col items-center md:grid text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
+        <div className="md:col-span-4 lg:col-span-3 md:row-span-2 md:row-end-2">
           <Phone
-            className={cn(`bg-${tw}`)}
+            className={cn(`bg-${tw}`, 'max-w-[150px] md:max-w-full')}
             imgSrc={configuration.croppedImageUrl!}
           />
         </div>
 
-        <div className="mt-6 sm:col-span-9 sm:mt-0 md:row-end-1">
+        <div className="mt-6 sm:col-span-9 md:row-end-1">
           <h3 className="text-3xl font-bold tracking-tight text-gray-900">
             Your {modelLabel} Case
           </h3>
