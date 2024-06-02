@@ -40,5 +40,6 @@ export function constructMetadata({
       creator: '@dioScar90',
     },
     icons,
+    metadataBase: new URL('https://usecase-one.vercel.app/'),
   }
 }
